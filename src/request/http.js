@@ -146,12 +146,3 @@ export function post(action, params) {
         })
     });
 }
-
-export default {
-  postData(action, params){
-    return post(action, params)
-  },
-  getData(action, params){
-    return get(action, params)
-  }
-}
