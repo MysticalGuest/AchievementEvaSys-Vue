@@ -1,4 +1,4 @@
-# achievement_eva_sys
+# Graduation requirements achievement evaluation system
 
 > A Vue.js project
 
