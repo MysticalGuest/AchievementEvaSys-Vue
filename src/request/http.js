@@ -1,7 +1,8 @@
 // axios package
 // 引入axios，并加到原型链中
-import axios from 'axios'
 import Vuex from 'vuex'
+import Vue from 'vue'
+import axios from 'axios'
 import store from '@/store/index' //@ 等价于/src这个目录
 
 Vue.prototype.$axios = axios;
@@ -102,7 +103,7 @@ axios.interceptors.response.use(
             return Promise.reject(error.response);
         }
     }
-});
+);
 
 
 /*==============================
