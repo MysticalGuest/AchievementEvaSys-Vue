@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 引入axios，并加到原型链中
+// import axios from 'axios';
 
 Vue.config.productionTip = false
 
