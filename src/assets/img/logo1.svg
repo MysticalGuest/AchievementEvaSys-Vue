@@ -1,0 +1,14 @@
+<svg width="130" height="60.00000000000001" xmlns="http://www.w3.org/2000/svg">
+ <style type="text/css">.st0{fill:#3796F6;}
+	.st1{fill:#FFFFFF;}</style>
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="132" height="62" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path stroke="null" class="st0" d="m116.546817,59.249717l-103.59717,0c-7.122305,0 -12.949646,-3.99935 -12.949646,-8.887458l0,-41.474802c0,-4.888096 5.827341,-8.887458 12.949646,-8.887458l103.59717,0c7.122305,0 12.949646,3.999362 12.949646,8.887458l0,41.474802c0,4.888108 -5.827341,8.887458 -12.949646,8.887458z" id="svg_1"/>
+  <text stroke="null" transform="matrix(0.9388137507413107,0,0,1,0.20565087723255296,0) " xml:space="preserve" text-anchor="start" font-family="Junction, sans-serif" font-size="39" id="svg_3" y="43" x="9" fill-opacity="null" stroke-opacity="null" stroke-width="0" fill="#ffffff">达成度</text>
+ </g>
+</svg>
