@@ -1,6 +1,6 @@
 # Graduation requirements achievement evaluation system
 
-> A Vue.js project
+> My first Vue project
 
 ## Build Setup
 
