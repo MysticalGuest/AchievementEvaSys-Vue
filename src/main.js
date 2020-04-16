@@ -6,6 +6,9 @@ import router from './router'
 // 引入axios，并加到原型链中
 // import axios from 'axios';
 
+// 启动mock模式
+require('./mock/index.js')
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
