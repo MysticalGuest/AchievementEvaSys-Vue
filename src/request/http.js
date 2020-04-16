@@ -6,7 +6,7 @@ import axios from 'axios'
 import store from '@/store/index' //@ 等价于/src这个目录
 
 Vue.prototype.$axios = axios;
-axios.defaults.baseURL = '/api'  //关键代码
+axios.defaults.baseURL = '/'  //关键代码
 // 设置默认的请求超时时间。超过了10s，告知用户当前请求超时，请刷新等。
 axios.defaults.timeout = 10000;
 // post请求头设置
@@ -109,7 +109,8 @@ axios.interceptors.response.use(
 /*==============================
 		封装get方法和post方法
 	==============================*/
-const Domain = "http://148.70.15.23:8000";  // 定义根域名
+// const Domain = "http://148.70.15.23:8000";  // 定义根域名
+const Domain = "";
 /**
  * get方法，对应get请求
  * @param {String} url [请求的url地址]
