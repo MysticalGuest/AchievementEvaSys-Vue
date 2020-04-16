@@ -56,9 +56,9 @@
 		data(){
 			return {
 				cur:0, //默认选中第一个tab
-				sno:"0",
-				spassword:"0",
-				booldata:"",
+				sno:"",
+				spassword:"",
+				// booldata:"",
 				isActive:true,
 			}
 		},
@@ -80,25 +80,29 @@
 						this.isActive = false;
 						return false;
 					}
-
 				}
 				let param = new URLSearchParams();
 				param.append("sno", this.sno);
 				param.append("spassword", this.spassword);
-				this.$api.postData('/login/',param)
+				// this.$api.postData('/login',{sno: this.sno})
+        this.$api.postData('/login',param)
 				.then(response => {
-					this.booldata = response;
-					if(response=="True"){
+          console.log(response);
+					// this.booldata = response;
+					if(response==true){
+            console.log("43434"+response);
 						this.$router.push({ path: '/stuinterface'});
 						const sessionSno = this.sno;
 						sessionStorage.setItem('sno', sessionSno);
 					}
-					else if(response=="False"){
+					else if(response==false){
 						this.$refs.input_spassword.value = "";
 						this.$refs.input_spassword.placeholder='密码错误！';
 						this.isActive = false;
 					}
 				});
+        // let res = this.$axios.post('/login',"89");
+        // console.log(res);
 			}
 		},
 		// 组件内路由--进入组件时
