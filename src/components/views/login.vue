@@ -84,14 +84,12 @@
 				let param = new URLSearchParams();
 				param.append("sno", this.sno);
 				param.append("spassword", this.spassword);
-				// this.$api.postData('/login',{sno: this.sno})
         this.$api.postData('/login',param)
 				.then(response => {
-          console.log(response);
-					// this.booldata = response;
+          // console.log(response);
 					if(response==true){
-            console.log("43434"+response);
-						this.$router.push({ path: '/stuinterface'});
+            // console.log("43434"+response);
+						this.$router.push({ path: '/stu/interface'});
 						const sessionSno = this.sno;
 						sessionStorage.setItem('sno', sessionSno);
 					}
