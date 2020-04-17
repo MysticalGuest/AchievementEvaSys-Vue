@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import login from '../components/views/login.vue'
+
 import stuinterface from '../components/views/student/stuinterface.vue'
+import stuinfo from '../components/views/student/stuinfo.vue'
+import courseinfo from '../components/views/student/courseinfo.vue'
 
 Vue.use(Router)
 
@@ -17,9 +20,21 @@ export default new Router({
       name: 'login',
       component: login
     },{
-      path: '/stu/interface',
+      path: '/stu',
       name: 'stuinterface',
-      component: stuinterface
+      component: stuinterface,
+      children:[
+        {
+          path:'/stu/interface',
+          name:'stuinfo',
+          component:stuinfo
+        },
+        {
+          path:'/stu/courseinfo',
+          name:'courseinfo',
+          component:courseinfo
+        }
+      ]
     }
   ]
 })
