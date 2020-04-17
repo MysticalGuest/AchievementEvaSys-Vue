@@ -1,5 +1,4 @@
 .header {
-  display: block;
   position: fixed;
   background-color: #2d2f32;
   top: 0;
@@ -24,11 +23,8 @@
   align-items: center;
   height: 70px;
   position: relative;
-}
-.header__content_end {
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 .header__logo {
   display: -webkit-flex;
@@ -100,9 +96,6 @@
   display: block;
   margin-bottom: 20px;
   position: relative;
-}
-.header__nav-item:last-child {
-  margin-bottom: 0;
 }
 .header__nav-item.show .header__nav-link {
   color: #3796f6;
