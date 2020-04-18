@@ -11,6 +11,10 @@
 </template>
 
 <script>
+  import Vue from 'vue';
+  import api from '@/api/api.js';
+  Vue.prototype.$api = api;
+
   import myheader from '../common/header.vue'
 
   import myside from '../common/side.vue'
@@ -21,7 +25,7 @@
   export default {
   	data() {
   		return {
-  			name: "肖梦杰",
+  			name: "",
         route1: "courseinfo",
         index1: "课程信息",
         route2: "warning",
@@ -46,7 +50,24 @@
   		// }
   	},
   	created() {
-  		// this.getInfo()
+      // const sno = sessionStorage.getItem('sno');
+      const token = sessionStorage.getItem('token');
+      console.log("token:::"+token);
+      const searchtoken = new URLSearchParams(token);
+      let param = new URLSearchParams();
+      param.append("sno", searchtoken.get("sno"));
+      // console.log("sno:::"+gettoken.sno);
+      this.$api.postData('/stu/interface',param)
+      .then(res => {
+        console.log("stuinterfaceres::::"+res.status);
+        console.log("stuinterfaceres::::"+res);
+        this.name = res.name;
+        // this.name = ;
+
+      })
+      .catch(err => {
+        console.log(err);
+      });
   	}
   }
 </script>
