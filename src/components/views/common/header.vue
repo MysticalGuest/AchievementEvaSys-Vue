@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" id="myheader">
     <div class="header__content">
       <!-- header logo -->
       <a href="#" class="header__logo">
@@ -25,7 +25,7 @@
           <router-link :to="{path:route3}" class="header__nav-link">{{index3}}</router-link>
         </li>
         <li class="header__nav-item">
-          <router-link to="/login" class="header__nav-link">{{index4}}</router-link>
+          <a href="javascript:void(0)" class="header__nav-link" @click="logout()">{{index4}}</a>
         </li>
       </ul>
       <!-- end header nav -->
@@ -52,22 +52,19 @@
   import '@/assets/css/style-header.css'
 
   export default {
+    name:"myheader",
     props: ["name", "index1", "index2", "index3","index4", "route1", "route2", "route3"],
     data() {
     	return {
         // getroute1:
     	}
     },
-
-
-
   	methods: {
-  		handleOpen(key, keyPath) {
-  			console.log(key, keyPath);
-  		},
-  		handleClose(key, keyPath) {
-  			console.log(key, keyPath);
-  		}
+  		logout(){
+        // 从sessionStorage删除所有保存的数据
+        sessionStorage.clear();
+        this.$router.push({ path: '/login'});
+      }
   	}
   }
 </script>
