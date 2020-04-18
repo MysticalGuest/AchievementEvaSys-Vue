@@ -48,9 +48,11 @@
 <script>
 	import Vue from 'vue';
 	import api from '@/api/api.js';
+  Vue.prototype.$api = api;
+
   //自己写的样式
   import '@/assets/css/style-login.css'
-  Vue.prototype.$api = api;
+
 	export default {
 		name:"login_vue",
 		data(){
@@ -60,6 +62,7 @@
 				spassword:"",
 				// booldata:"",
 				isActive:true,
+        userToken:'',
 			}
 		},
 		created(){
@@ -86,12 +89,17 @@
 				param.append("spassword", this.spassword);
         this.$api.postData('/login',param)
 				.then(response => {
-          // console.log(response);
+          console.log("response:"+response);
 					if(response==true){
-            // console.log("43434"+response);
+            console.log("43434"+response);
 						this.$router.push({ path: '/stu/interface'});
-						const sessionSno = this.sno;
-						sessionStorage.setItem('sno', sessionSno);
+						// const sessionSno = this.sno;
+						// sessionStorage.setItem('sno', sessionSno);
+            this.userToken = param;
+            console.log("userToken"+this.userToken);
+            //将用户token保存到vuex中
+            // this.$api.commit('changelogin',{Authorization: this.userToken });
+            this.$store.commit('changeLogin',{token: this.userToken });
 					}
 					else if(response==false){
 						this.$refs.input_spassword.value = "";
