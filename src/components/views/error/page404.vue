@@ -6,7 +6,7 @@
     </div>
     <nav class="shelf">
       <!-- <a class="book home-page">Home page</a> -->
-      <router-link to="login" class="book home-page">Home page</router-link>
+      <router-link to="/login" class="book home-page">Home page</router-link>
       <a href="https://github.com/MysticalGuest/AchievementEvaSys-Vue" class="book about-us">About me</a>
       <a href="https://github.com/MysticalGuest/AchievementEvaSys-Vue/issues" class="book contact">Contact</a>
       <a href="https://github.com/MysticalGuest" class="book more">more</a>
