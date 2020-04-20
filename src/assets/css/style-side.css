@@ -4,7 +4,7 @@
 .user {
   position: relative;
   margin-bottom: 20px;
-  top:50px;
+  top:100px;
   left:40px;
   background-color: #fff;
   -webkit-border-radius: 4px;
@@ -220,7 +220,7 @@
 .sidebox {
   position: relative;
   margin-bottom: 20px;
-  top:50px;
+  top:100px;
   right: 40px;
   -webkit-box-shadow: 0 2px 26px 0 rgba(133,153,171,0.1);
   box-shadow: 0 2px 26px 0 rgba(133,153,171,0.1);
