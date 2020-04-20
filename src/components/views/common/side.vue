@@ -70,6 +70,8 @@
 </template>
 
 <script>
+  import '@/assets/css/style-side.css'
+  
   export default {
   	props: ["name", "department"]
   }
