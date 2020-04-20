@@ -62,6 +62,7 @@ axios.interceptors.response.use(
     // 请求失败
     error => {
       console.log("响应拦截器error::"+error);
+      console.log("响应拦截器码:"+error.response.status);
         if (error.response.status) {
             switch (error.response.status) {
                 // 401: 未登录
