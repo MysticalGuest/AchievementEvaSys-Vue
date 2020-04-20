@@ -4,10 +4,23 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 // 引入axios，并加到原型链中
-// import axios from 'axios';
+// import axios from '@/request/axios.js';
+// Vue.prototype.$axios=axios
+// import http from '@/request/http.js'
+// Vue.prototype.$http = http;
+// import store from './store/index'
+// Vue.prototype.$store = store;
 
 // 启动mock模式
-require('./mock/index.js')
+// require('./mock/index.js')
+// require('./mock/student.js')
+function requireAll (r) { r.keys().forEach(r) }
+requireAll(require.context('./mock/', true, /\.js$/))
+
+// Vue.prototype.$http.interceptors.response.use()
+// Vue.prototype.$http.axios.i
+// var instance = http.create();
+// instance.interceptors.response.use()
 
 Vue.config.productionTip = false
 
