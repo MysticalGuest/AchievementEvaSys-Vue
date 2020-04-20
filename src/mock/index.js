@@ -1,6 +1,5 @@
 // 引入mock.js及配置文件
 // import Mock from 'mockjs'
-import Mysteryguest from './stumysteryguest.js'
 import axios from 'axios'
 // 通过axios-mock-adapter生成代理api地址
 import MockAdapter from 'axios-mock-adapter'
@@ -26,7 +25,7 @@ import MockAdapter from 'axios-mock-adapter'
 // })
 
 // 设置模拟调试器实例
-var mock = new MockAdapter(axios);
+export const mock = new MockAdapter(axios);
 
 mock.onPost("/login").reply(config => {
   console.log("config21212:"+config.data);
@@ -36,18 +35,15 @@ mock.onPost("/login").reply(config => {
   return [200, false];
 });
 
-mock.onPost("/stu/interface").reply(config => {
-  console.log("config  /stu/"+config.data);
-  console.log("config  sno"+config.data);
-  const data = new URLSearchParams(config.data);
-  if(data.get("sno")=="111"){
-    console.log("Mysteryguest"+Mysteryguest.name);
-    return [200, Mysteryguest];
-  }
-  return [401];
-});
-
-// mock.onPost('/lo').reply(404)
+// mock.onPost("/stu/interface").reply(config => {
+//   console.log("config  sno"+config.data);
+//   const data = new URLSearchParams(config.data);
+//   // const thisstu = mergeJsonObject(Mysteryguest, stu);
+//   if(data.get("sno")=="111"){
+//     return [200, mergeJsonObject(Mysteryguest, stu)];
+//   }
+//   return [401];
+// });
 
 // 拒绝所有的 POST 请求，返回 HTTP 500
 // mock.onPost().reply(500);
