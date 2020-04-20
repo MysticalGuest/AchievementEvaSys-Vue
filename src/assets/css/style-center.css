@@ -40,12 +40,6 @@
   margin-bottom: 6px;
   line-height: 100%;
 }
-.post__head-title h5 a {
-  color: #364e65;
-}
-.post__head-title h5 a:hover {
-  color: #fa7268;
-}
 .post__head-title p {
   font-size: 12px;
   color: #8599ab;
