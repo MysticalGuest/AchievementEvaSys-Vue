@@ -3,22 +3,19 @@
     <div class="header__content">
       <!-- header logo -->
       <a href="#" class="header__logo">
-        <img src="@/assets/img/logo1.svg" alt="">
+        <img src="@/assets/img/logo.svg" alt="">
       </a>
       <!-- end header logo -->
 
       <!-- header nav -->
       <ul class="header__nav">
         <li class="header__nav-item">
-          <!-- <a href="interface" class="header__nav-link">首页</a> -->
           <router-link to="interface" class="header__nav-link">首页</router-link>
         </li>
         <li class="header__nav-item">
-          <!-- <a href="#" class="header__nav-link">成绩</a> -->
           <router-link :to="{path:route1}" class="header__nav-link">{{index1}}</router-link>
         </li>
         <li class="header__nav-item">
-          <!-- <a href="#" class="header__nav-link">页面</a> -->
           <router-link :to="{path:route2}" class="header__nav-link">{{index2}}</router-link>
         </li>
         <li class="header__nav-item">
