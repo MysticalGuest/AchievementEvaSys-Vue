@@ -21,28 +21,28 @@
   	<h2 class="post__title">基本信息</h2>
 
   	<div class="post__options">
-  		<span>身份证号：</span>
+  		<span>身份证号</span>
   		<p>{{IDnum}}</p>
-      <span>出生日期:</span>
+      <span>出生日期</span>
       <p>{{birth}}</p>
-      <span>民族：</span>
+      <span>民族</span>
       <p>{{nation}}</p>
   	</div>
     <div class="post__options">
-    	<span>政治面貌：</span>
-    	<p>中国共产主义青年团团员</p>
-      <span>生源地：</span>
-      <p>湖北</p>
-      <span>学生类别：</span>
-      <p>普通本科生</p>
+    	<span>政治面貌</span>
+    	<p>{{political}}</p>
+      <span>生源地</span>
+      <p>{{origin}}</p>
+      <span>学生类别</span>
+      <p>{{scategory}}</p>
     </div>
     <div class="post__options">
-    	<span>电子邮箱：</span>
-    	<p>融入</p>
-      <span>家庭地址：</span>
-      <p>融入</p>
-      <span>手机号码：</span>
-      <p>融入</p>
+    	<span>电子邮箱</span>
+    	<p>{{email}}</p>
+      <span>家庭地址</span>
+      <p>{{address}}</p>
+      <span>手机号码</span>
+      <p>{{phone}}</p>
     </div>
 
   	<div class="post__description">
@@ -51,9 +51,9 @@
   	</div>
 
   	<div class="post__tags">
-  		<a href="#">HTML</a>
-  		<a href="#">CSS</a>
-  		<a href="#">PHP</a>
+  		<a href="#">学籍信息</a>
+  		<a href="#">奖惩信息</a>
+  		<a href="#">成绩信息</a>
   	</div>
 
   	<div class="post__stats">
@@ -80,33 +80,53 @@
         sno:'',
         name:'',
         stuclass:'',
-        academy:''
+        academy:'',
+        IDnum:'',
+        birth:'',
+        nation:'',
+        political:'',
+        origin:'',
+        scategory:'',
+        email:'',
+        address:'',
+        phone:'',
+        classnum:''
       }
     },
     methods: {
 
     },
     created() {
+      // 获取token;数据sno=111&spassword=333
       const token = sessionStorage.getItem('token');
+      // 构造URL 的查询字符串对象
       const searchtoken = new URLSearchParams(token);
       let param = new URLSearchParams();
+      // 获取sno数据
       param.append("sno", searchtoken.get("sno"));
       this.$api.postData('/stu/info',param)
       .then(res => {
-        console.log("stuinfo::::"+res);
         this.sno=res.sno;
         this.name = res.name;
-        this.stuclass=res.stuclass;
-        this.academy=res.academy;
+        this.stuclass = res.stuclass;
+        this.academy = res.academy;
+        this.classnum = res.classnum;
+        this.IDnum = res.IDnum;
+        this.birth = res.birth;
+        this.nation = res.nation;
+        this.political = res.political;
+        this.origin = res.origin;
+        this.scategory = res.scategory;
+        this.email = res.email;
+        this.address = res.address;
+        this.phone = res.phone;
       })
       .catch(err => {
         console.log(err);
       });
     },
-    mounted(){
-        console.log("rrrrr");
-        // console.log("9999"+this.store.token);
-    }
+    // mounted(){
+    // }
   }
 </script>
 
