@@ -6,7 +6,7 @@
         <img src="@/assets/img/achieve.png" alt="">
         <h1>毕业管理系统</h1>
       </a>
-
+      
       <!-- end header logo -->
 
       <!-- header nav -->
