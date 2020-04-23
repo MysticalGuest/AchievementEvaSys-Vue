@@ -1,9 +1,9 @@
 let stu = {
   route1: "courseinfo",
-  index1: "课程信息",
-  route2: "warning",
+  index1: "学业信息",
+  route2: "warninfo",
   index2: "预警通知",
-  route3: "modifyinfor",
+  route3: "modifyinfo",
   index3: "修改信息",
   index4: "退出系统",
 }
