@@ -6,10 +6,10 @@ import router from './router'
 // 引入axios，并加到原型链中
 // import axios from '@/request/axios.js';
 // Vue.prototype.$axios=axios
-// import http from '@/request/http.js'
-// Vue.prototype.$http = http;
-// import store from './store/index'
-// Vue.prototype.$store = store;
+
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 
 // 启动mock模式
 // require('./mock/index.js')
