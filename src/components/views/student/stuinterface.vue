@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <myheader :name="name"
+  <!-- <div> -->
+    <!-- <myheader :name="name"
               :index1="index1" :index2="index2" :index3="index3" :index4="index4"
               :route1="route1" :route2="route2" :route3="route3"></myheader>
-    <myside :name="name" :department="stuclass"></myside>
+    <myside :name="name" :department="stuclass"></myside> -->
     <!-- <mycenter></mycenter> -->
     <!-- 路由匹配到的组件将显示在这里 -->
-    <router-view />
-  </div>
+    <!-- <router-view /> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -70,7 +70,7 @@
   .center {
     position: relative;
     margin:0 auto;
-    padding: 20px;
+    padding: 15px;
     top: 100px;
     border: 1px solid rgba(133,153,171,0.2);
     -webkit-box-shadow: 0 2px 26px 0 rgba(133,153,171,0.1);
