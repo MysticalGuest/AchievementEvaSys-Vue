@@ -3,9 +3,10 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import login from '../components/views/login.vue'
 
-import stuinterface from '../components/views/student/stuinterface.vue'
+import stuinterface from '../components/views/common/interface.vue'
 import stuinfo from '../components/views/student/stuinfo.vue'
 import courseinfo from '../components/views/student/courseinfo.vue'
+import warninfo from '../components/views/student/warninfo.vue'
 
 import page404 from '../components/views/error/page404.vue'
 
@@ -29,12 +30,17 @@ export default new Router({
         {
           path:'/stu/interface',
           name:'stuinfo',
-          component:stuinfo
+          component: stuinfo
         },
         {
           path:'/stu/courseinfo',
           name:'courseinfo',
-          component:courseinfo
+          component: courseinfo
+        },
+        {
+          path:'/stu/warninfo',
+          name:'warninfo',
+          component: warninfo
         }
       ]
     },
