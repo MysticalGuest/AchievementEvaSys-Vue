@@ -31,7 +31,9 @@ mock.onPost("/login").reply(config => {
   console.log("config21212:"+config.data);
   const data = new URLSearchParams(config.data);
   if(data.get("sno")=="111"&&data.get("spassword")=="111")
-    return [200, true];
+    return [200, "student"];
+  else if(data.get("tno")=="222"&&data.get("tpassword")=="222")
+    return [200, "teacher"];
   return [200, false];
 });
 
