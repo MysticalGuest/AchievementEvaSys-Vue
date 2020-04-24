@@ -110,6 +110,12 @@ input[name="sno"].change::-webkit-input-placeholder {
 input[name="spassword"].change::-webkit-input-placeholder {
 	color: red;
 }
+input[name="tno"].change::-webkit-input-placeholder {
+	color: red;
+}
+input[name="tpassword"].change::-webkit-input-placeholder {
+	color: red;
+}
 .theme{
 	text-align:center;
 	font-family: SimSun;
