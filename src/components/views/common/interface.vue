@@ -1,10 +1,9 @@
 <template>
   <div>
-    <myheader :name="name"
+    <myheader :name="name" :role="role"
               :index1="index1" :index2="index2" :index3="index3" :index4="index4"
               :route1="route1" :route2="route2" :route3="route3"></myheader>
     <myside :name="name" :department="stuclass"></myside>
-    <!-- <mycenter></mycenter> -->
     <!-- 路由匹配到的组件将显示在这里 -->
     <router-view />
   </div>
@@ -23,6 +22,7 @@
   	data() {
   		return {
   			name: "",
+        role: "",
         route1: "",
         index1: "",
         route2: "",
@@ -40,15 +40,17 @@
   	methods: {
   	},
   	created() {
+      // 获得oken
       const token = sessionStorage.getItem('token');
-      console.log("token:::"+token);
+      // 构建URLSearchParamsd对象
       const searchtoken = new URLSearchParams(token);
       let param = new URLSearchParams();
+      // 获取sno值
       param.append("sno", searchtoken.get("sno"));
       this.$api.postData('/stu/interface',param)
       .then(res => {
-        console.log("stuinterfaceres::::"+res.route1);
         this.name = res.name;
+        this.role = res.role;
         this.stuclass=res.stuclass;
         this.route1 = res.route1;
         this.index1 = res.index1;
@@ -60,7 +62,6 @@
       .catch(err => {
         console.log(err);
       });
-
 
   	}
   }
@@ -93,7 +94,6 @@
     -webkit-align-items: flex-start;
     -ms-flex-align: start;
     align-items: flex-start;
-    /* margin-bottom: 20px; */
     width: 600px;
     text-align:center;
   }
