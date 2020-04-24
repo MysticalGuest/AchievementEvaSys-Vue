@@ -6,7 +6,7 @@
         <img src="@/assets/img/achieve.png" alt="">
         <h1>毕业管理系统</h1>
       </a>
-      
+      <el-tag type="primary" style="margin-top: 5px;">{{role}}端</el-tag>
       <!-- end header logo -->
 
       <!-- header nav -->
@@ -52,12 +52,7 @@
 
   export default {
     name:"myheader",
-    props: ["name", "index1", "index2", "index3","index4", "route1", "route2", "route3"],
-    data() {
-    	return {
-        // getroute1:
-    	}
-    },
+    props: ["name", "index1", "index2", "index3","index4", "route1", "route2", "route3", "role"],
   	methods: {
   		logout(){
         // 从sessionStorage删除所有保存的数据
