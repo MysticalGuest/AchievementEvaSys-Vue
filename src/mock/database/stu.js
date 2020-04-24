@@ -1,4 +1,5 @@
 let stu = {
+  role: "学生",
   route1: "courseinfo",
   index1: "学业信息",
   route2: "warninfo",
