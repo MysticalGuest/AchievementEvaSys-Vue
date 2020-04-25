@@ -84,11 +84,10 @@
         nation:'',
         political:'',
         origin:'',
-        scategory:'',
+        degree:'',
         email:'',
         address:'',
-        phone:'',
-        classnum:''
+        phone:''
       }
     },
     created() {
