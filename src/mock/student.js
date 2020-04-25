@@ -1,8 +1,8 @@
 import {mock} from './index.js'
 
-import stu from './database/stu.js'
-import {mergeJsonObject} from './database/stu.js'
-import Mysteryguest from './database/stumysteryguest.js'
+import stu from './database/student/stu.js'
+import {mergeJsonObject} from './database/student/stu.js'
+import Mysteryguest from './database/student/stumysteryguest.js'
 
 mock.onPost("/stu/interface").reply(config => {
   const data = new URLSearchParams(config.data);
