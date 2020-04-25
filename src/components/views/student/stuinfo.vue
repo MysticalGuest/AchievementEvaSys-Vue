@@ -93,9 +93,6 @@
         classnum:''
       }
     },
-    methods: {
-
-    },
     created() {
       // 获取token;数据sno=111&spassword=333
       const token = sessionStorage.getItem('token');
@@ -108,7 +105,7 @@
       .then(res => {
         this.sno=res.sno;
         this.name = res.name;
-        this.stuclass = res.stuclass;
+        this.stuclass = res.department;
         this.academy = res.academy;
         this.classnum = res.classnum;
         this.IDnum = res.IDnum;
