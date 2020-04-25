@@ -3,7 +3,7 @@
     <myheader :name="name" :role="role"
               :index1="index1" :index2="index2" :index3="index3" :index4="index4"
               :route1="route1" :route2="route2" :route3="route3"></myheader>
-    <myside :name="name" :department="stuclass"></myside>
+    <myside :name="name" :department="department"></myside>
     <!-- 路由匹配到的组件将显示在这里 -->
     <router-view />
   </div>
@@ -30,7 +30,7 @@
         route3: "",
         index3: "",
         index4: "退出系统",
-        stuclass: ""
+        department: ""
   		}
   	},
   	components: {
@@ -45,13 +45,23 @@
       // 构建URLSearchParamsd对象
       const searchtoken = new URLSearchParams(token);
       let param = new URLSearchParams();
-      // 获取sno值
-      param.append("sno", searchtoken.get("sno"));
-      this.$api.postData('/stu/interface',param)
+      // 动态路由
+      let url="";
+      if(searchtoken.get("role")=="student"){
+        // 获取sno值
+        param.append("sno", searchtoken.get("sno"));
+        url = "/stu/interface";
+      }
+      else if(searchtoken.get("role")=="teacher"){
+        // 获取tno值
+        param.append("tno", searchtoken.get("tno"));
+        url = "/tea/interface";
+      }
+      this.$api.postData(url,param)
       .then(res => {
         this.name = res.name;
         this.role = res.role;
-        this.stuclass=res.stuclass;
+        this.department=res.department;
         this.route1 = res.route1;
         this.index1 = res.index1;
         this.route2 = res.route2;
