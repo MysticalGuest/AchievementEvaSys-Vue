@@ -108,9 +108,11 @@
         this.$api.postData('/login',param)
 				.then(response => {
           console.log("response:"+response);
+          // 加入身份
+          param.append("role", response);
 					if(response=="student"){              // 学生
 						this.$router.push({ path: '/stu/interface'});
-            //将用户token保存到vuex中
+            // 将用户token保存到vuex中
             this.$store.commit('changeLogin',{token: param });
 					}
           else if(response=="teacher"){         // 教师
