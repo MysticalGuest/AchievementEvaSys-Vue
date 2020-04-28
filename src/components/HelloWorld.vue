@@ -81,6 +81,13 @@
         </a>
       </li>
     </ul>
+    <h2>Reach Evaluation System</h2>
+    <a
+      href="/#/login"
+      target="_blank"
+    >
+      login interface
+    </a>
   </div>
 </template>
 
