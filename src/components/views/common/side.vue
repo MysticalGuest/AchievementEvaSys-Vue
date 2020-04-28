@@ -29,7 +29,7 @@
     <!-- end user -->
 
     <!-- sidebox -->
-    <div class="sidebox sidebox--desk">
+    <div ref="side" class="sidebox sidebox--desk">
     	<h4 class="sidebox__title">消息</h4>
     	<div class="sidebox__content">
     		<div class="sidebox__job">
