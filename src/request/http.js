@@ -71,7 +71,6 @@ axios.interceptors.response.use(
                 case 401:{
                   console.log("响应拦截器error::401");
                   console.log("401::"+router);
-                  // router.push({ path: '/login'});
                   console.log("401::"+router.currentRoute.fullPath);
                     router.replace({
                         path: '/login',
@@ -87,7 +86,7 @@ axios.interceptors.response.use(
                 // 清除本地token和清空vuex中token对象
                 // 跳转登录页面
                 case 403:
-                     Toast({
+                    Toast({
                         message: '登录过期，请重新登录',
                         duration: 1000,
                         forbidClick: true
@@ -108,6 +107,12 @@ axios.interceptors.response.use(
 
                 // 404请求不存在
                 case 404:
+                    router.replace({
+                        path: '/login',
+                        query: {
+                            redirect: router.currentRoute.fullPath
+                        }
+                    });
                     Toast({
                         message: '网络请求不存在',
                         duration: 1500,
