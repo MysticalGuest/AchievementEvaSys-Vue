@@ -3,7 +3,7 @@
     <myheader :name="name" :role="role"
               :index1="index1" :index2="index2" :index3="index3" :index4="index4"
               :route1="route1" :route2="route2" :route3="route3"></myheader>
-    <myside :name="name" :department="department"></myside>
+    <myside :name="name" :department="department" :visible="visible"></myside>
     <!-- 路由匹配到的组件将显示在这里 -->
     <router-view />
   </div>
@@ -30,7 +30,9 @@
         route3: "",
         index3: "",
         index4: "退出系统",
-        department: ""
+        department: "",
+        // 右side可见性
+        visible: true
   		}
   	},
   	components: {
@@ -89,6 +91,15 @@
       });
 
       this.specifyRouteIntercept();
+      
+      if(this.$route.path=='/tea/courseinfo'){
+        console.log("++++----");
+        this.visible = false;
+      }
+      else{
+        this.visible = true;
+      }
+
 
   	},
     // 监听,当路由发生变化的时候执行
@@ -98,17 +109,15 @@
           console.log("监听"+val);
           // 拦截路由访问页面方式
           this.specifyRouteIntercept();
-          // var pattern = /\/[\w+]+\/+[\w+]/;
-          // console.log(pattern.test(this.$route.path));
-          // console.log("router!!!:"+this.$route.path);
-          // if(!pattern.test(this.$route.path)){   //正则匹配url:'/stu'和'/stu/'等,给后台报404
-          //   this.$router.replace({
-          //     name: 'page404',
-          //     query: {
-          //         redirect: this.$router.currentRoute.fullPath
-          //     }
-          //   })
-          // }
+          console.log("++++"+this.$route.path);
+          // 指定页面隐藏右side
+          if(this.$route.path=='/tea/courseinfo'){
+            console.log("++++----");
+            this.visible = false;
+          }
+          else{
+            this.visible = true;
+          }
         },
         // 深度观察监听
         deep: true
