@@ -4,6 +4,8 @@ import axios from 'axios'
 // 通过axios-mock-adapter生成代理api地址
 import MockAdapter from 'axios-mock-adapter'
 
+
+
 // 设置模拟调试器实例
 export const mock = new MockAdapter(axios);
 
@@ -21,6 +23,9 @@ mock.onPost("/login").reply(config => {
     return [200, "tutor"];
   return [200, false];
 });
+
+// 指定路由拦截
+// mock.onPost("/specifyRouteIntercept").reply(404);
 
 // 拒绝所有的 POST 请求，返回 HTTP 500
 // mock.onPost().reply(500);
