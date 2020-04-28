@@ -4,11 +4,14 @@ import HelloWorld from '@/components/HelloWorld'
 import login from '../components/views/login.vue'
 
 import sysinterface from '../components/views/common/interface.vue'
+import facultyinfo from '../components/views/common/facultyinfo.vue'
+
 import stuinfo from '../components/views/student/stuinfo.vue'
-import courseinfo from '../components/views/student/courseinfo.vue'
+import academicinfo from '../components/views/student/academicinfo.vue'
 import warninfo from '../components/views/student/warninfo.vue'
 
-import facultyinfo from '../components/views/common/facultyinfo.vue'
+import courseinfo from '../components/views/teacher/courseinfo.vue'
+import manageeva from '../components/views/teacher/manageeva.vue'
 
 import page404 from '../components/views/error/page404.vue'
 
@@ -35,9 +38,9 @@ export default new Router({
           component: stuinfo
         },
         {
-          path:'/stu/courseinfo',
-          name:'courseinfo',
-          component: courseinfo
+          path:'/stu/academicinfo',
+          name:'academicinfo',
+          component: academicinfo
         },
         {
           path:'/stu/warninfo',
@@ -55,16 +58,16 @@ export default new Router({
           name:'teainfo',
           component: facultyinfo
         },
-        // {
-        //   path:'/stu/courseinfo',
-        //   name:'courseinfo',
-        //   component: courseinfo
-        // },
-        // {
-        //   path:'/stu/warninfo',
-        //   name:'warninfo',
-        //   component: warninfo
-        // }
+        {
+          path:'/tea/courseinfo',
+          name:'courseinfo',
+          component: courseinfo
+        },
+        {
+          path:'/tea/manageeva',
+          name:'manageeva',
+          component: manageeva
+        }
       ]
     },
     // 404page
