@@ -38,6 +38,21 @@
       myside
   	},
   	methods: {
+      // 拦截路由访问页面方式
+      specifyRouteIntercept(){
+        // 正则匹配
+        var pattern = /\/[\w+]+\/+[\w+]/;
+        console.log(pattern.test(this.$route.path));
+        console.log("router!!!:"+this.$route.path);
+        if(!pattern.test(this.$route.path)){   //正则匹配url:'/stu'和'/stu/'等,给后台报404
+          this.$router.replace({
+            name: 'page404',
+            query: {
+                redirect: this.$router.currentRoute.fullPath
+            }
+          })
+        }
+      }
   	},
   	created() {
       // 获得oken
@@ -73,7 +88,32 @@
         console.log(err);
       });
 
-  	}
+      this.specifyRouteIntercept();
+
+  	},
+    // 监听,当路由发生变化的时候执行
+    watch: {
+      $route: {
+        handler: function(val, oldVal){
+          console.log("监听"+val);
+          // 拦截路由访问页面方式
+          this.specifyRouteIntercept();
+          // var pattern = /\/[\w+]+\/+[\w+]/;
+          // console.log(pattern.test(this.$route.path));
+          // console.log("router!!!:"+this.$route.path);
+          // if(!pattern.test(this.$route.path)){   //正则匹配url:'/stu'和'/stu/'等,给后台报404
+          //   this.$router.replace({
+          //     name: 'page404',
+          //     query: {
+          //         redirect: this.$router.currentRoute.fullPath
+          //     }
+          //   })
+          // }
+        },
+        // 深度观察监听
+        deep: true
+      }
+    }
   }
 </script>
 
