@@ -29,7 +29,8 @@
     <!-- end user -->
 
     <!-- sidebox -->
-    <div ref="side" class="sidebox sidebox--desk">
+    <!-- 把显示隐藏扔给子组件处理，即 v-show 放到子组件上 -->
+    <div v-show="visible" class="sidebox sidebox--desk">
     	<h4 class="sidebox__title">消息</h4>
     	<div class="sidebox__content">
     		<div class="sidebox__job">
@@ -71,9 +72,14 @@
 
 <script>
   import '@/assets/css/style-side.css'
-  
+
   export default {
-  	props: ["name", "department"]
+  	props: ["name", "department", "visible"],
+    data(){
+      return {
+        // visible : false
+      }
+    }
   }
 </script>
 
