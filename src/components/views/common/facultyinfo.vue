@@ -6,7 +6,7 @@
   		</a>
   		<div class="post__head-title">
   			<h5>姓名：{{name}}</h5>
-  			<!-- <p>学号：{{sno}}</p> -->
+  			<p>教工号：{{tno}}</p>
   		</div>
   	</div>
 
@@ -32,14 +32,15 @@
     	<p>{{political}}</p>
       <span>籍贯</span>
       <p>{{origin}}</p>
-      <span>学位</span>
-      <p>{{degree}}</p>
-    </div>
-    <div class="post__options">
-    	<span>电子邮箱</span>
-    	<p>{{email}}</p>
       <span>家庭地址</span>
       <p>{{address}}</p>
+
+    </div>
+    <div class="post__options">
+      <span>学位</span>
+      <p>{{degree}}</p>
+    	<span>电子邮箱</span>
+    	<p>{{email}}</p>
       <span>手机号码</span>
       <p>{{phone}}</p>
     </div>
@@ -74,7 +75,7 @@
   export default {
     data() {
       return {
-        // sno:'',
+        tno:'',
         name:'',
         department:'',
         academy:'',
@@ -100,7 +101,7 @@
       param.append("tno", searchtoken.get("tno"));
       this.$api.postData('/tea/info',param)
       .then(res => {
-        this.sno=res.sno;
+        this.tno=res.tno;
         this.name = res.name;
         this.department = res.department;
         this.academy = res.academy;
