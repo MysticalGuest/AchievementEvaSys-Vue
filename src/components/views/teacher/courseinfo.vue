@@ -1,5 +1,5 @@
 <template>
-  <div class="center">
+  <div class="center teacoucenter">
     <el-button style="margin-top:10px" type="warning" @click="informVisble = !informVisble">查看通知</el-button>
     <el-table ref="filterTable" :data="courseData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
       <el-table-column prop="cno" label="课程号" sortable column-key="courseId"></el-table-column>
@@ -8,7 +8,7 @@
       <el-table-column prop="ca_name" label="课程负责人"></el-table-column>
       <el-table-column prop="tperiod" label="课时"></el-table-column>
 
-      <el-table-column prop="nature" label="课程类型" :formatter="formatter"
+      <el-table-column prop="nature" label="课程类型"
         :filters="[{text: '必修课程', value: '必修课程'}, {text: '选修课程', value: '选修课程'}]"
         :filter-method="filterTag" filter-placement="bottom-end">
         <template slot-scope="scope">
@@ -91,10 +91,17 @@
       .catch(err => {
         console.log(err);
       });
-      console.log("dom"+this.$refs.side);
-      this.$refs.side.style.backgroundColor='red';
+
+
+      // console.log("sdsd")
     },
     methods:{
+      current_change:function(currentPage){
+        this.currentPage = currentPage;
+      },
+      filterTag(value, row) {
+        return row.nature === value;
+      },
       showDetail(row) {
         this.dialogTableVisible = true;
         let param = new URLSearchParams();
@@ -107,10 +114,20 @@
         .catch(err => {
           console.log(err);
         });
+      },
+      showStu() {
+        this.innerVisible = true
+        // TeacherApi.getCourseStu(this.pageTag).then(res => {
+        //   this.stuData = res.tableData
+        // })
+
       }
     }
   }
 </script>
 
 <style>
+  .teacoucenter{
+    width: 850px
+  }
 </style>
