@@ -32,6 +32,25 @@ mock.onPost("/tea/courseinfo").reply(config => {
   return [401];
 });
 
+// 获取老师通知消息
+mock.onPost("/tea/message").reply(config => {
+  const data = new URLSearchParams(config.data);
+  if(data.get("tno")=="222"){
+    return [200, iKun.inform];
+  }
+  return [401];
+});
+
+// 获取选修这门课的学生
+mock.onPost("/tea/stuofcourse").reply(config => {
+  // const data = new URLSearchParams(config.data);
+  // if(data.get("tno")=="222"){
+  //   return [200, iKun.inform];
+  // }
+  return [200, iKun.stuData];
+  // return [401];
+});
+
 mock.onPost("/tea/detailinfo").reply(config => {
   const data = new URLSearchParams(config.data);
   console.log("cno:"+data.get("cno"));
