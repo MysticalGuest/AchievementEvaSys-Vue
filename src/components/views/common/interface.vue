@@ -54,6 +54,17 @@
             }
           })
         }
+      },
+      // 指定页面隐藏右side
+      hideRightSide(path){
+        // 指定页面隐藏右side  path=='/tea/manageeva'
+        if(path=='/tea/courseinfo'){
+          console.log("++++----");
+          this.visible = false;
+        }
+        else{
+          this.visible = true;
+        }
       }
   	},
   	created() {
@@ -90,15 +101,11 @@
         console.log(err);
       });
 
+      // 拦截路由访问页面方式
       this.specifyRouteIntercept();
-      
-      if(this.$route.path=='/tea/courseinfo'){
-        console.log("++++----");
-        this.visible = false;
-      }
-      else{
-        this.visible = true;
-      }
+
+      // 指定页面隐藏右side
+      this.hideRightSide(this.$route.path);
 
 
   	},
@@ -106,18 +113,11 @@
     watch: {
       $route: {
         handler: function(val, oldVal){
-          console.log("监听"+val);
           // 拦截路由访问页面方式
           this.specifyRouteIntercept();
-          console.log("++++"+this.$route.path);
+
           // 指定页面隐藏右side
-          if(this.$route.path=='/tea/courseinfo'){
-            console.log("++++----");
-            this.visible = false;
-          }
-          else{
-            this.visible = true;
-          }
+          this.hideRightSide(this.$route.path);
         },
         // 深度观察监听
         deep: true
