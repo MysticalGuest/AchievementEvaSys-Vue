@@ -14,9 +14,9 @@
   import api from '@/api/api.js';
   Vue.prototype.$api = api;
 
-  import myheader from '../common/header.vue'
+  import myheader from '../common/header.vue';
 
-  import myside from '../common/side.vue'
+  import myside from '../common/side.vue';
 
   export default {
   	data() {
@@ -84,6 +84,11 @@
         // 获取tno值
         param.append("tno", searchtoken.get("tno"));
         url = "/tea/interface";
+      }
+      else if(searchtoken.get("role")=="coursemanager"){
+        console.log("sdsdsd");
+        param.append("tno", searchtoken.get("tno"));
+        url = "/com/interface";
       }
       this.$api.postData(url,param)
       .then(res => {
