@@ -10,8 +10,13 @@ import stuinfo from '../components/views/student/stuinfo.vue'
 import academicinfo from '../components/views/student/academicinfo.vue'
 import warninfo from '../components/views/student/warninfo.vue'
 
+// 任课教师
 import courseinfo from '../components/views/teacher/courseinfo.vue'
 import manageeva from '../components/views/teacher/manageeva.vue'
+
+// 课程管理员
+import courselist from '../components/views/coursemanager/courselist.vue'
+import reviewcourse from '../components/views/coursemanager/reviewcourse.vue'
 
 import page404 from '../components/views/error/page404.vue'
 
@@ -67,6 +72,27 @@ export default new Router({
           path:'/tea/manageeva',
           name:'manageeva',
           component: manageeva
+        }
+      ]
+    },{
+      path: '/com',
+      name: 'cominterface',
+      component: sysinterface,
+      children:[
+        {
+          path:'/com/interface',
+          name:'cominfo',
+          component: facultyinfo
+        },
+        {
+          path:'/com/courselist',
+          name:'courselist',
+          component: courselist
+        },
+        {
+          path:'/com/reviewcourse',
+          name:'reviewcourse',
+          component: reviewcourse
         }
       ]
     },
