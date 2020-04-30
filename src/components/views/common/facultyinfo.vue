@@ -97,9 +97,19 @@
       // 构造URL 的查询字符串对象
       const searchtoken = new URLSearchParams(token);
       let param = new URLSearchParams();
-      // 获取sno数据
-      param.append("tno", searchtoken.get("tno"));
-      this.$api.postData('/tea/info',param)
+      // 动态路由
+      let url="";
+      if(searchtoken.get("role")=="teacher"){
+        // 获取tno值
+        param.append("tno", searchtoken.get("tno"));
+        url = "/tea/info";
+      }
+      else if(searchtoken.get("role")=="coursemanager"){
+        console.log("sdsdsd");
+        param.append("tno", searchtoken.get("tno"));
+        url = "/com/info";
+      }
+      this.$api.postData(url,param)
       .then(res => {
         this.tno=res.tno;
         this.name = res.name;
