@@ -58,7 +58,7 @@
       // 指定页面隐藏右side
       hideRightSide(path){
         // 指定页面隐藏右side  path=='/tea/manageeva'
-        if(path=='/tea/courseinfo'){
+        if(path=='/tea/courseinfo' || path=='/com/courselist'){
           console.log("++++----");
           this.visible = false;
         }
@@ -86,9 +86,13 @@
         url = "/tea/interface";
       }
       else if(searchtoken.get("role")=="coursemanager"){
-        console.log("sdsdsd");
         param.append("tno", searchtoken.get("tno"));
         url = "/com/interface";
+      }
+      else if(searchtoken.get("role")=="majormanager"){
+        console.log("sdsdsd");
+        param.append("tno", searchtoken.get("tno"));
+        url = "/mam/interface";
       }
       this.$api.postData(url,param)
       .then(res => {
@@ -160,5 +164,14 @@
     align-items: flex-start;
     width: 600px;
     text-align:center;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* 子组件的分页按钮样式 */
+  .el-pagination{
+    padding-top:10px;
+    margin: 0 auto;
   }
 </style>
