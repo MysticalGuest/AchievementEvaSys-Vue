@@ -155,12 +155,12 @@
   border-radius: 50%;
 }
 @media (min-width: 360px) {
-  .header__profile, {
+  .header__profile {
     margin-left: 25px;
   }
 }
 @media (min-width: 576px) {
-  .header__profile, {
+  .header__profile {
     margin-left: 30px;
   }
 }
@@ -294,6 +294,6 @@
     margin: 0;
   }
   .header__search-input {
-    width: 250px;
+    width: 200px;
   }
 }
