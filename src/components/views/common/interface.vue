@@ -164,10 +164,6 @@
     align-items: flex-start;
     width: 600px;
     text-align:center;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
   }
   /* 子组件的分页按钮样式 */
   .el-pagination{
