@@ -1,6 +1,6 @@
 let cominfo = {
   tno: '2017101',
-  name: '蔡周杰伦',
+  name: '周杰伦',
   department: "信息科学与技术学院",
   academy: "信息科学与技术学院",
   IDnum:"420621200001011235",
@@ -70,4 +70,21 @@ let stuData = [{
   approval_status: '未审核'
 }]
 
-export default {cominfo, courselist, detailData, stuData}
+let classOfcourse = [{
+  class_name: "2017-1",//班级号
+  state: '登记完成',
+},{
+  class_name: "2017-3",//班级号
+  state: '登记缺失',
+},{
+  class_name: "2017-4",//班级号
+  state: '登记完成',
+}]
+
+let course_index_detal = [{
+    index_detail_id:'1-1'//指标点id
+  },{
+    index_detail_id:'1-2'
+}]
+
+export default {cominfo, courselist, detailData, stuData, classOfcourse, course_index_detal}
