@@ -51,3 +51,19 @@ mock.onPost("/com/stuofcourse").reply(config => {
   return [200, Jay.stuData];
   // return [401];
 });
+
+// 获取选这门课的班级名单
+mock.onPost("/com/classOfcourse").reply(config => {
+  // 请求cno
+  return [200, Jay.classOfcourse];
+  // return [401];
+});
+
+//获取这门课所有的对应的指标点
+mock.onPost("/com/courseIndexDetail").reply(config => {
+  // 请求cno
+  return [200, Jay.course_index_detal];
+  // return [401];
+});
+
+//获取这门课这个班某个指标点的情况
