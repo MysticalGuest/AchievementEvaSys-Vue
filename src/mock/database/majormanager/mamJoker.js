@@ -15,4 +15,15 @@ let maminfo = {
   phone:"18172345647"
 }
 
-export default {maminfo}
+let allIndexDetail = [{
+  index_detail_id:'1-1'
+},
+{
+  index_detail_id:'1-2'
+}]
+
+let score = {
+  avg: 88
+}
+
+export default {maminfo, allIndexDetail, score}
