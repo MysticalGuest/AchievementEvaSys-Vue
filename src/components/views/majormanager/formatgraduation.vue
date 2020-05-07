@@ -37,11 +37,11 @@
       </el-row>
 
       <el-table ref="filterTable" :data="tableData.slice((currentPage-1) * pagesize, currentPage * pagesize)" style="width: 100%">
-        <el-table-column prop="index_id" label="毕业要求id" sortable column-key="courseId">
+        <el-table-column prop="index_id" label="毕业要求ID" sortable column-key="courseId">
         </el-table-column>
         <el-table-column prop="index_name" label="毕业要求名">
         </el-table-column>
-        <el-table-column prop="index_content" label="毕业要求内容" width="600">
+        <el-table-column prop="index_content" label="毕业要求内容">
         </el-table-column>
         <el-table-column fixed="right" label="移除">
           <template slot-scope="scope">
