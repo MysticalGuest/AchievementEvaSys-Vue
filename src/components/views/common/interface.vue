@@ -90,9 +90,13 @@
         url = "/com/interface";
       }
       else if(searchtoken.get("role")=="majormanager"){
-        console.log("sdsdsd");
         param.append("tno", searchtoken.get("tno"));
         url = "/mam/interface";
+      }
+      else if(searchtoken.get("role")=="tutor"){
+        console.log("sdsdsd");
+        param.append("tno", searchtoken.get("tno"));
+        url = "/tor/interface";
       }
       this.$api.postData(url,param)
       .then(res => {
