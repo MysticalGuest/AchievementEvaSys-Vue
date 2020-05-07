@@ -109,9 +109,13 @@
         url = "/com/info";
       }
       else if(searchtoken.get("role")=="majormanager"){
-        console.log("ffffff");
         param.append("tno", searchtoken.get("tno"));
         url = "/mam/info";
+      }
+      else if(searchtoken.get("role")=="tutor"){
+        console.log("ffffff");
+        param.append("tno", searchtoken.get("tno"));
+        url = "/tor/info";
       }
       this.$api.postData(url,param)
       .then(res => {
