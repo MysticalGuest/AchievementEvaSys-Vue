@@ -23,6 +23,10 @@ import reviewcourse from '../components/views/coursemanager/reviewcourse.vue'
 import formatgraduation from '../components/views/majormanager/formatgraduation.vue'
 import scoreanalysis from '../components/views/majormanager/scoreanalysis.vue'
 
+// 辅导员
+import stulist from '../components/views/tutor/stulist.vue'
+import analysis from '../components/views/tutor/analysis.vue'
+
 import page404 from '../components/views/error/page404.vue'
 
 Vue.use(Router)
@@ -119,6 +123,28 @@ export default new Router({
           path:'/mam/scoreanalysis',
           name:'scoreanalysis',
           component: scoreanalysis
+        }
+      ]
+    },
+    {
+      path: '/tor',
+      name: 'torinterface',
+      component: sysinterface,
+      children:[
+        {
+          path:'/tor/interface',
+          name:'torinfo',
+          component: facultyinfo
+        },
+        {
+          path:'/tor/stulist',
+          name:'stulist',
+          component: stulist
+        },
+        {
+          path:'/tor/analysis',
+          name:'analysis',
+          component: analysis
         }
       ]
     },
