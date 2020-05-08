@@ -87,4 +87,15 @@ let course_index_detal = [{
     index_detail_id:'1-2'
 }]
 
-export default {cominfo, courselist, detailData, stuData, classOfcourse, course_index_detal}
+let courseReview = {
+  avg: 86,//这个班这门课这个指标点的平均分
+  min: 60,//这个班这门课这个指标点的最低分
+  max: 96,//这个班这门课这个指标点的最高分
+  ydata:[100,66,44,33,22,11,10,9,8,7,6,5,4,3,2,1]//返回这个指标点所有人成绩从高到低排列
+}
+
+let reviewMessage = {
+  message: "fail"
+}
+
+export default {cominfo, courselist, detailData, stuData, classOfcourse, course_index_detal, courseReview, reviewMessage}
