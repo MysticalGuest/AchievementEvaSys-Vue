@@ -40,7 +40,7 @@
     <el-dialog :title="innertitle" :visible.sync="innerVisible" width="30%">
       <p></p>
 
-      <el-select v-model="choose" placeholder="请选择一个指标点">
+      <el-select v-model="chooseDetailIndex" placeholder="请选择一个指标点">
         <el-option v-for="item in indexdetail" :key="item.index_detail_id" :label="item.index_detail_id" :value="item.index_detail_id">
           <span style="float: left">{{ item.index_detail_id }}</span>
         </el-option>
@@ -48,7 +48,7 @@
 
       <p></p>
 
-      <div id="myChart" :style="{width: '350px', height: '300px'}"></div>
+      <div id="myChart" :style="{width: '100%', height: '300px'}"></div>
       <p>平均分：{{avg}}</p>
       <p>最高分：{{max}}</p>
       <p>最低分：{{min}}</p>
@@ -86,10 +86,11 @@
         selectCno:'',
 
         // inter对话框属性
+        stuData: [], //显示有哪些班级选这个课
         innerVisible:false,
         innertitle:'',
         indexdetail:[],
-        choose: "",
+        chooseDetailIndex: "",  // 选中的指标点
 
         selectClass:'',
 
@@ -98,7 +99,7 @@
         max: 0,
 
         informVisible:false,
-        textarea: "",
+        textarea: "",   // 老师的通知
       }
     },
     methods:{
@@ -123,6 +124,28 @@
         })
         .catch(err => {
           console.log(err);
+        });
+      },
+      // 绘制图表
+      drawLine(xdata, ydata) {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById('myChart'))
+        // 绘制图表
+        // myChart.setOptions(this.)
+        myChart.setOption({
+          title: {
+            text: this.pageClass + '班学生成绩分布'
+          },
+          tooltip: {},
+          xAxis: {
+            data: xdata
+          },
+          yAxis: {},
+          series: [{
+            name: '分数',
+            type: 'bar',
+            data: ydata
+          }]
         });
       },
       reviewCourse(row){
@@ -151,20 +174,17 @@
           });
           // 绘制图表
           let chartparam = new URLSearchParams();
-           // CAApi.getCourseReview(this.index[0].index_detail_id, row.classno, this.pageTag).then(res => {
-          //   this.avg = res.avg
-          //   this.max = res.max
-          //   this.min = res.min
-          //   var xdata = []
-          //   var ydata = res.ydata
-          //   this.drawLine(xdata, ydata)
-          // })
-          param.append("index_detail_id", this.indexdetail[0].index_detail_id);
-          param.append("classno", row.claaano, this.selectCno);
-          this.$api.postData('/com/courseIndexDetail', param)
+          console.log("1111GGG"+this.chooseDetailIndex);
+          chartparam.append("index_detail_id", this.chooseDetailIndex);
+          chartparam.append("classno", row.claaano, this.selectCno);
+          this.$api.postData('/com/courseReview', chartparam)
           .then(res => {
-            this.indexdetail = res;
-            this.total = res.length;
+            this.avg = res.avg;
+            this.max = res.max;
+            this.min = res.min;
+            var xdata = [];
+            var ydata = res.ydata;
+            this.drawLine(xdata, ydata);
           })
           .catch(err => {
             console.log(err);
@@ -191,6 +211,56 @@
           }]
         });
       },
+      reviewScore(event) {
+        var state;
+        var result = event.currentTarget.value;
+        if (result == "审核通过")
+          state = 1;
+        else
+          state = 0;
+        if (this.textarea != '' && state == 0 && this.informVisible == true) {
+          //给对应老师审核不通过的通知
+          let param = new URLSearchParams();
+          param.append("textarea", this.textarea);
+          param.append("cno", this.selectCno);
+          this.$api.postData('/com/notifyTeacher', param)
+          .then(res => {
+
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        }
+        // 修改改班级在某门课的成绩的审核状态
+        let param = new URLSearchParams();
+        param.append("classno", this.selectClass);
+        param.append("cno", this.selectCno);
+        param.append("state", state);
+        this.$api.postData('/com/setCourseState', param)
+        .then(res => {
+          if (res.message == "fail") {
+            this.$notify.error({
+              title: '失败',
+              message: '审核修改失败，请联系管理员'
+            });
+          } else {
+            this.$notify({
+              title: '成功',
+              message: '审核修改成功',
+              type: 'success'
+            });
+          }
+          // 获取选这门课的班级名单
+          this.$api.postData('/com/classOfcourse', param)   // 传的是param, 后台只取cno
+          .then(res=> {
+            this.stuData = res;
+          })
+        })
+        .catch(err => {
+          console.log(err);
+        });
+        this.textarea = "";
+      }
     },
     created(){
       // 获取token;数据sno=111&spassword=333
