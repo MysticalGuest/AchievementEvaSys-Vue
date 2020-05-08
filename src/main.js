@@ -11,6 +11,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// npm install --save echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 // 启动mock模式
 // require('./mock/index.js')
 // require('./mock/student.js')
