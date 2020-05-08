@@ -66,4 +66,25 @@ mock.onPost("/com/courseIndexDetail").reply(config => {
   // return [401];
 });
 
-//获取这门课这个班某个指标点的情况
+// 绘制图表
+mock.onPost("/com/courseReview").reply(config => {
+  // 请求cno
+  return [200, Jay.courseReview];
+  // return [401];
+});
+
+// 给对应老师审核不通过的通知
+mock.onPost("/com/notifyTeacher").reply(config => {
+  return [200];
+  // return [401];
+});
+
+// 修改改班级在某门课的成绩的审核状态
+mock.onPost("/com/setCourseState").reply(config => {
+  // 'classno':classno,
+  //       'cno':cno,
+  //       'state':state//state状态，1是已经审核，0是没有通过审核
+
+  return [200, Jay.reviewMessage];
+  // return [401];
+});
