@@ -26,4 +26,30 @@ let score = {
   avg: 88
 }
 
-export default {maminfo, allIndexDetail, score}
+let indexData = [{
+  index_id : "1",
+  index_name: "好好学习1",
+  index_content:"好好学习，天天向上!"
+}]
+
+let indexDetailOfIndex = [{
+  index_detail_id: '1-1',//指标点id
+  index_detail_content:'121321'//指标点内容
+},
+{
+  index_detail_id: '1-1',
+  index_detail_content:'121321'
+}]
+
+let addIndexResult = {message : "success"}
+
+let removeIndexResult = {message : "fail"}
+
+let addIndexDetailResult = {message : "fail"}
+
+let removeIndexDetailResult = {message : "success"}
+
+export default {maminfo, allIndexDetail, score, indexData, 
+                indexDetailOfIndex, addIndexResult, removeIndexResult, addIndexDetailResult,
+                removeIndexDetailResult
+}
