@@ -95,4 +95,11 @@ let index_options=[{
   state: '已登记'
 }]
 
-export default {teainfo, courseData, detailData, inform, stuData, detailState, index_options}
+let gradeUploadResult = {message : "success"}
+
+let registerResult = {message : "success"}
+
+export default {teainfo, courseData, detailData, inform,
+  stuData, detailState, index_options, gradeUploadResult,
+  registerResult
+}
