@@ -21,3 +21,12 @@ mock.onPost("/tor/info").reply(config => {
   }
   return [401];
 });
+
+// 学生信息
+mock.onPost("/tor/stulist").reply(config => {
+  const data = new URLSearchParams(config.data);
+  if(data.get("tno")=="555"){
+    return [200, GEM.stulist];
+  }
+  return [401];
+});
