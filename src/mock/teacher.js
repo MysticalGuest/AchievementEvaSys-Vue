@@ -79,3 +79,32 @@ mock.onPost("/tea/detailinfo").reply(config => {
   // }
   // return [401];
 });
+
+mock.onPost("/tea/GradeUpload").reply(config => {
+  // config.data是一个FormData对象
+  const data = config.data;
+  const file = data.get("file");
+  // 返回当前 File 对象所引用文件最后修改时间的 Date 对象
+  console.log("LastModifiedDate:"+file.lastModifiedDate);
+  // 只读 	返回当前 File 对象所引用文件最后修改时间， 自 1970年1月1日0:00 以来的毫秒数
+  console.log("LastModified:"+file.lastModified);
+  console.log("Name:"+file.name);
+  console.log("Size:"+file.size);
+  console.log("Type:"+file.type);// 只读 	返回文件的 MIME 类型
+  console.log("Path:"+file.webkitRelativePath);// 只读 	返回 File 相关的 path 或 URL
+  // if(data.get("tno")=="222"){
+    return [200, iKun.gradeUploadResult];
+  // }
+  // return [401];
+});
+
+//上传老师给指标点的分值
+mock.onPost("/tea/courseIndexDetailScore").reply(config => {
+  const data = new URLSearchParams(config.data);
+  console.log("cno:"+data.get("cno"));
+  console.log("score:"+data.get("score"));
+  // if(data.get("tno")=="222"){
+    return [200, iKun.registerResult];
+  // }
+  // return [401];
+});
