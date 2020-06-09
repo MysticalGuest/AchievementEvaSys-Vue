@@ -40,7 +40,7 @@ a{
 }
 .form_item input[type="text"],.form_item input[type="password"]{
 	display: block;
-	width: calc(100% - 18px);
+	width: calc(100% - 20px);
 	height: 36px;
 	margin:0 auto; 
 	padding-left: 16px;
