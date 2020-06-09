@@ -3,7 +3,7 @@
     <el-row class="rowheader">
       <el-col :span="6"><h3>一键导入成绩</h3></el-col>
       <el-col :span="12"><h4 style="color: red;">只能上传模板格式的Excel文件</h4></el-col>
-      <el-col :span="6"><el-button type="info" @click="downloadfile()">下载成绩模板</el-button></el-col>
+      <el-col :span="6"><el-button type="info" @click="downloadTemplate()">下载成绩模板</el-button></el-col>
     </el-row>
     <el-row>
       <el-table ref="filterTable" :data="courseData.slice((currentPage-1) * pagesize, currentPage * pagesize)" border>
@@ -18,8 +18,16 @@
                 <el-button type="success" icon="el-icon-edit" @click="showStu(scope.row)" plain>登记成绩</el-button>
               </el-col>
               <el-col :span="14">
-                <el-upload name="file" :data="{cno:scope.row.cno}" class="upload-demo" ref="upload" action="http://148.70.15.23:8000/gradeTemplate/"
-                  :auto-upload="true" :show-file-list="false" :on-success="upload">
+                <el-upload name="file"
+                  :data="{cno:scope.row.cno}"
+                  class="upload-demo"
+                  ref="upload"
+                  accept=".xls,.xlsx"
+                  action="#"
+                  :before-upload="beforeUpload"
+                  :auto-upload="true"
+                  :show-file-list="false"
+                  :on-success="upload">
                   <el-button slot="trigger" type="primary" plain="">选取文件并上传</el-button>
                 </el-upload>
               </el-col>
@@ -71,8 +79,8 @@
         </el-option>
       </el-select>
       <!-- <div class="block"> -->
-        <el-slider v-model="score" show-input>
-        </el-slider>
+      <el-slider v-model="score" show-input>
+      </el-slider>
       <!-- </div> -->
       <el-button type="primary" plain @click="commit()">提交</el-button>
     </el-dialog>
@@ -91,6 +99,8 @@
         outerVisible: false,
 
         selectCourse : "",
+        selectCno:"",
+        selectSno:"",
 
         // stuIndex对话框
         indexDetailVisible: false,
@@ -106,17 +116,42 @@
         // 这个值是el-option标签必须的初始值,否则会出问题
         value: '',
         // 这个值是el-slider标签必须的初始值,否则会出问题
-        score:0
+        score:0,
       }
     },
     methods: {
       current_change:function(currentPage){
         this.currentPage = currentPage;
       },
+      downloadTemplate(){
+        // 使用vue-cli 2构建的项目，将资源放入static文件夹
+        window.location.href = '/static/GradeTemplate.xlsx';
+      },
+      beforeUpload(file){
+        let fd = new FormData();
+        console.log("file:", file);
+        fd.append('file', file);//传文件
+        // fd.append('id',this.srid);//传其他参数
+        this.$api.postData('/tea/GradeUpload',fd)
+        .then(res => {
+          this.$notify({
+            title: '成功',
+            message: '上传成功',
+            type: 'success'
+          });
+          // 刷新表格数据的代码
+          /* */
+        })
+        .catch(err => {
+          console.log(err);
+        });
+        return false  //屏蔽了action的默认上传
+      },
       showStu(row) {
         this.outerVisible = true;
         // 记录用户选择表格中那一行的课程名,后面会用到
         this.selectCourse = row.cname;
+        this.selectCno = row.cno;
         let param = new URLSearchParams();
         // 获取cno数据
         param.append("cno", row.id);
@@ -145,6 +180,8 @@
         });
       },
       register(row){
+        this.selectSno = row.sno;
+        
         if (row.approval_status == "已审核") {
           this.$notify.error({
             title: '错误',
@@ -168,23 +205,49 @@
       },
       // 上传文件成功后:on-success回调函数,返回成功与否
       upload(res, file){
-        // if (res.message == "success") {
-        //   this.$notify({
-        //     title: '成功',
-        //     message: '成绩已经上传',
-        //     type: 'success'
-        //   });
-        //   TeacherApi.getCourseStu(this.pageTag).then(res => {
-        //     this.stuData = res.tableData
-        //   })
-        // } else {
-        //   this.$notify.error({
-        //     title: '错误',
-        //     message: '成绩上传失败，请联系管理员'
-        //   });
-        // }
+        if (res.message == "success") {
+          this.$notify({
+            title: '成功',
+            message: '成绩已经上传',
+            type: 'success'
+          });
+          // 刷新表格数据的代码
+          /* */
+        } else {
+          this.$notify.error({
+            title: '错误',
+            message: '成绩上传失败，请联系管理员'
+          });
+        }
       },
       commit() {
+        //上传老师给指标点的分值
+        let param = new URLSearchParams();
+        param.append("cno", this.selectCno);
+        param.append("sno", this.selectSno);
+        param.append("index_detail_id", this.value);
+        param.append("score", this.score);
+        this.$api.postData('/tea/courseIndexDetailScore', param)
+        .then(res => {
+          if (res.message == "success") {
+            this.$notify({
+              title: '成功',
+              message: '分值已经录入系统',
+              type: 'success'
+            });
+            // TeacherApi.getCourseStu(this.pageTag).then(res => {
+            //   this.stuData = res.tableData
+            // })
+          } else {
+            this.$notify.error({
+              title: '错误',
+              message: '分值录入失败，请联系管理员'
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
         // TeacherApi.postIndexDetailScore(this.pageTag, this.pageSno, this.value, this.score).then(res => {
         //   // if (res.status == 200) {
         //   if (res.message == "success") {
